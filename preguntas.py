@@ -210,9 +210,9 @@ def pregunta_07():
         int1 = int(tup1[1])
         tupa = int1, tup1[0]
         mapl.append(tupa)
-    mapl.sort(reverse=False)
+    #mapl.sort(reverse=False)
     #print(mapl)
-    result = reducer_tup(mapl)
+    result = reducer_tup2(mapl)
     return result
 
 def pregunta_08():
@@ -560,6 +560,27 @@ def reducer_tup(sequence):
         tup = tuple()
         tup = key1, count
         reduce1.append(tup)
+    return reduce1
+
+#Funcion tupla pregunta 7
+def reducer_tup2(sequence):
+    x = 0
+    reduce1 = []
+    uni = []
+    for x in sequence:
+        tup = x
+        keys = tup[0]
+        uni.append(keys)
+    uni = unique(uni)
+    uni.sort(reverse=False)
+    for y in uni:
+        lis = []
+        for x in sequence:
+            if y == x[0]:
+                lis.append(x[1])
+        tupa = tuple()
+        tupa = y, lis
+        reduce1.append(tupa)
     return reduce1
 
 # Reducer unique pregunta 8
