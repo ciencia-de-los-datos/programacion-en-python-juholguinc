@@ -20,7 +20,7 @@ def reducer(sequence):
         tup1 = sequence[x]
         key1 = tup1[0]
         count = int(tup1[1])
-        print (key1)
+        #print (key1)
         mayor = count
         menor = count
         y = x
@@ -38,7 +38,7 @@ def reducer(sequence):
                     menor = count2
                 else:
                     mayor = count2
-                print (count2)
+                #print (count2)
                 count = count2
                 x = x+1
             else:

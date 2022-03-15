@@ -20,7 +20,7 @@ def reducer(sequence):
         tup1 = sequence[x]
         key1 = tup1[0]
         count = int(tup1[1])
-        print (count)
+        #print (count)
         y = x
         bolx = True
         while (bolx == True):
@@ -32,7 +32,7 @@ def reducer(sequence):
             key2 = tup2[0]
             if key1 == key2:
                 count = count + int(tup2[1])
-                print (count)
+                #print (count)
                 x = x+1
             else:
                 bolx = False
