@@ -11,6 +11,11 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+global data
+with open("data.csv", "r") as file:
+    data = file.readlines()
+data = [line.replace("\n", "") for line in data]
+data = [line.split("\t") for line in data]
 
 
 def pregunta_01():
@@ -21,8 +26,12 @@ def pregunta_01():
     214
 
     """
-    return
 
+    suma = 0
+    for x in data:
+        suma = int(x[1]) + suma
+    #print(suma)
+    return suma
 
 def pregunta_02():
     """
@@ -39,8 +48,16 @@ def pregunta_02():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[0]
+        tupa = str1, 1
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    #print(mapl)
+    result = reducer_cant(mapl)
+    return result
 
 def pregunta_03():
     """
@@ -57,8 +74,16 @@ def pregunta_03():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[0]
+        tupa = str1, str(tup1[1])
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    #print(mapl)
+    result = reducer_sum(mapl)
+    return result
 
 def pregunta_04():
     """
@@ -82,8 +107,16 @@ def pregunta_04():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[2]
+        str2 = str1[5] + str1[6]
+        tupa = str2, 1
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    result = reducer_cant(mapl)
+    return result
 
 def pregunta_05():
     """
@@ -100,8 +133,15 @@ def pregunta_05():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[0]
+        tupa = str1, str(tup1[1])
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    result = reducer_max_min(mapl)
+    return result
 
 def pregunta_06():
     """
@@ -125,8 +165,23 @@ def pregunta_06():
     ]
 
     """
-    return
-
+    mapl = []
+    dat2 = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[4]
+        dat1 = str1.split(",")
+        for val in dat1:
+            dat2.append(val)
+    for val in dat2:
+        # dat2 = dat1[0]
+        dat3 = val.split(":")
+        str2 = dat3[0]
+        tupa = str2, int(dat3[1])
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    result = reducer_min_max(mapl)
+    return result
 
 def pregunta_07():
     """
@@ -149,8 +204,16 @@ def pregunta_07():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        int1 = int(tup1[1])
+        tupa = int1, tup1[0]
+        mapl.append(tupa)
+    #mapl.sort(reverse=False)
+    #print(mapl)
+    result = reducer_tup2(mapl)
+    return result
 
 def pregunta_08():
     """
@@ -174,8 +237,16 @@ def pregunta_08():
     ]
 
     """
-    return
-
+    mapl = []
+    for value in data:
+        tup1 = value
+        int1 = int(tup1[1])
+        tupa = int1, tup1[0]
+        mapl.append(tupa)
+        mapl.sort(reverse=False)
+    #print(mapl)
+    result = reducer_u_tup(mapl)
+    return result
 
 def pregunta_09():
     """
@@ -197,8 +268,26 @@ def pregunta_09():
     }
 
     """
-    return
+    mapl = []
+    dat2 = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[4]
+        dat1 = str1.split(",")
+        for val in dat1:
+            dat2.append(val)
+    for val in dat2:
+        # dat2 = dat1[0]
+        dat3 = val.split(":")
+        str2 = dat3[0]
+        tupa = str2, int(dat3[1])
+        mapl.append(tupa)
+    mapl.sort(reverse=False)
+    result = reducer_cant(mapl)
+    diction = {}
+    dictionary = Convert1(result, diction)
 
+    return dictionary
 
 def pregunta_10():
     """
@@ -218,8 +307,18 @@ def pregunta_10():
 
 
     """
-    return
-
+    mapl = []
+    dat2 = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[0]
+        col4 = tup1[3]
+        col5 = tup1[4]
+        dat1 = col4.split(",")
+        dat2 = col5.split(",")
+        tupa = str1, len(dat1), len(dat2)
+        mapl.append(tupa)
+    return mapl
 
 def pregunta_11():
     """
@@ -239,8 +338,20 @@ def pregunta_11():
 
 
     """
-    return
-
+    mapl = []
+    dat2 = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[3]
+        dat1 = str1.split(",")
+        for val in dat1:
+            tupa1 = val, tup1[1]
+            mapl.append(tupa1)
+    mapl.sort(reverse=False)
+    result = reducer_sum(mapl)
+    dic = {}
+    diction = Convert1(result, dic)
+    return diction
 
 def pregunta_12():
     """
@@ -257,4 +368,265 @@ def pregunta_12():
     }
 
     """
-    return
+    mapl = []
+    dat2 = []
+    for value in data:
+        tup1 = value
+        str1 = tup1[4]
+        dat1 = str1.split(",")
+        for val in dat1:
+            dat2 = val.split(":")
+            tupa1 = value[0], dat2[1]
+            mapl.append(tupa1)
+    mapl.sort(reverse=False)
+    result = reducer_sum(mapl)
+    dic = {}
+    diction = Convert1(result, dic)
+    return diction
+
+# funcion de conteo para pregunta 2
+def reducer_cant(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        count = 1
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count = count + 1
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        tup = key1, count
+        reduce1.append(tup)
+    return reduce1
+
+# funcion de suma para pregunta 3
+def reducer_sum(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        count = int(tup1[1])
+        #print (count)
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count = count + int(tup2[1])
+                #print (count)
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        tup = key1, count
+        reduce1.append(tup)
+    return reduce1
+
+# funcion maximo minimo pregunta 5
+def reducer_max_min(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        count = int(tup1[1])
+        #print (key1)
+        mayor = count
+        menor = count
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count2 = int(tup2[1])
+                if count2 <= menor:
+                    menor = count2
+                else:
+                    mayor = count2
+                #print (count2)
+                count = count2
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        tup = key1, mayor, menor
+        reduce1.append(tup)
+    return reduce1
+
+# funcion minimo maximo pregnta 6
+def reducer_min_max(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        count = int(tup1[1])
+        #print (key1)
+        mayor = count
+        menor = count
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count2 = int(tup2[1])
+                if count2 <= menor:
+                    menor = count2
+                else:
+                    mayor = count2
+                #print (count2)
+                count = count2
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        tup = key1, menor, mayor
+        reduce1.append(tup)
+    return reduce1
+
+#Funcion tupla pregunta 7
+def reducer_tup(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        count = []
+        count.append(tup1[1])
+        #print (count)
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count.append(tup2[1])
+                #rint (count)
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        tup = key1, count
+        reduce1.append(tup)
+    return reduce1
+
+#Funcion tupla pregunta 7
+def reducer_tup2(sequence):
+    x = 0
+    reduce1 = []
+    uni = []
+    for x in sequence:
+        tup = x
+        keys = tup[0]
+        uni.append(keys)
+    uni = unique(uni)
+    uni.sort(reverse=False)
+    for y in uni:
+        lis = []
+        for x in sequence:
+            if y == x[0]:
+                lis.append(x[1])
+        tupa = tuple()
+        tupa = y, lis
+        reduce1.append(tupa)
+    return reduce1
+
+# Reducer unique pregunta 8
+def unique(list1):
+    unique_list = []
+    for x in list1:
+        if x not in unique_list:
+            unique_list.append(x)
+    return unique_list
+    # print list
+def reducer_u_tup(sequence):
+    x = 0
+    reduce1 = []
+    while x < len(sequence):
+    #for x in range(len(mapl)):
+        #print (x)
+        tup1 = sequence[x]
+        key1 = tup1[0]
+        count = []
+        count.append(tup1[1])
+        #print (count)
+        y = x
+        bolx = True
+        while (bolx == True):
+            #print(key1)
+            if (x+1 == len(sequence)):
+                x = x+1
+                break
+            tup2 = sequence[x+1]
+            key2 = tup2[0]
+            if key1 == key2:
+                count.append(tup2[1])
+                #rint (count)
+                x = x+1
+            else:
+                bolx = False
+                x = x+1
+
+        tup = tuple()
+        ulist = unique(count)
+        tup = key1, ulist
+        reduce1.append(tup)
+    return reduce1
+
+# tup to dic
+def Convert1(tup, di):
+    di = dict(tup)
+    return di
+
